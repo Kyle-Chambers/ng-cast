@@ -10,7 +10,22 @@ angular.module('video-player')
   this.searchResults = () => {
     
   };
+
+  this.update = (search) => {
+    youTube.search(search, (data) => {
+      this.videos = data;
+      this.currentVideo = data[0];
+      this.currentLink = 
+        $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/" + this.currentVideo.id.videoId);
+    });
+  };
   
+  this.updateVideoPlayer = (index) => {
+    this.currentVideo = this.videos[index];
+    this.currentLink = 
+      $sce.trustAs($sce.RESOURCE_URL, "https://www.youtube.com/embed/" + this.currentVideo.id.videoId);
+  }
+
   this.$onInit = () => { 
     youTube.search('javascript', (data) => {
       this.videos = data;

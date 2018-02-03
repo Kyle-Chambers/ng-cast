@@ -4,7 +4,8 @@ angular.module('video-player')
 })
 .component('videoList', {
   bindings: {
-    videos: '<'
+    videos: '<',
+    updateVideoPlayer: '<'
   },
   templateUrl: 'src/templates/videoList.html',
   controller: 'videoListController'
